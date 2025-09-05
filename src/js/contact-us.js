@@ -11,41 +11,22 @@
 /* 
     * Consumer Example 
 
-    async function handleContactFormSubmission() {
+    function handleContactFormSubmission() {
       try {
-        const success = await contactUs(
+        contactUs(
           "your-recaptcha-key",
           "your-tenant",
           "John Doe",
           "john.doe@example.com",
           "This is a test message."
         );
-        if (success) {
-          console.log("Contact form submitted successfully.");
-        }
       } catch (error) {
         console.error("An error occurred during form submission. Display an error message to the user.", error);
-        // You can also check the specific error type to display a more friendly message.
-        if (error instanceof ApiError && error.status === 400) {
-          alert("Please check your input and try again.");
-        } else {
-          alert("An unexpected error occurred. Please try again later.");
-        }
-      }
+      } finally {
+		// cleanup or final actions
+	  }
     }
  */
-
-/**
- * Custom error class for API failures.
- * This provides a more descriptive error type for consumers.
- */
-class ApiError extends Error {
-    constructor(message, status = null) {
-        super(message);
-        this.name = 'ApiError';
-        this.status = status;
-    }
-}
 
 /**
  * Generates a compliant globally unique identifier (GUID).
@@ -98,7 +79,6 @@ async function fetchWithRetry(url, options, retries = 3) {
  * @param {string} name The contact's name.
  * @param {string} contact The contact information (e.g., email or phone).
  * @param {string} message The message content.
- * @returns {Promise<boolean>} A promise that resolves to true on success, or rejects on error.
  */
 function contactUs(reCapthchaPublicKey, tenant, name, contact, message) {
     grecaptcha.ready(function () {
@@ -112,7 +92,7 @@ function contactUs(reCapthchaPublicKey, tenant, name, contact, message) {
                 token: token,
             };
 
-            const url = "https://niobiumnotifyfunc.azurewebsites.net/Notification";
+            const url = "https://api.notification.niobium.co.nz/ContactUs";
             const options = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
