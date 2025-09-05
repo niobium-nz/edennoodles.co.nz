@@ -119,12 +119,7 @@ function contactUs(reCapthchaPublicKey, tenant, name, contact, message) {
                 body: JSON.stringify(data),
             };
 
-            const response = await fetchWithRetry(url, options);
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new ApiError(`API request failed: ${response.statusText}. Details: ${errorText}`, response.status);
-            }
+            fetchWithRetry(url, options);
         });
     });
 }
