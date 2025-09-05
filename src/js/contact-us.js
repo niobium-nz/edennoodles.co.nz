@@ -100,40 +100,31 @@ async function fetchWithRetry(url, options, retries = 3) {
  * @param {string} message The message content.
  * @returns {Promise<boolean>} A promise that resolves to true on success, or rejects on error.
  */
-async function contactUs(reCapthchaPublicKey, tenant, name, contact, message) {
-    try {
-        await grecaptcha.ready();
-        const token = await grecaptcha.execute(reCapthchaPublicKey, { action: "submit" });
+function contactUs(reCapthchaPublicKey, tenant, name, contact, message) {
+    grecaptcha.ready(function () {
+        grecaptcha.execute(reCapthchaPublicKey, { action: "submit" }).then(function (token) {
+            const data = {
+                id: generateGUID(),
+                tenant: tenant,
+                name: name,
+                contact: contact,
+                message: message,
+                token: token,
+            };
 
-        const data = {
-            id: generateGUID(),
-            tenant: tenant,
-            name: name,
-            contact: contact,
-            message: message,
-            token: token,
-        };
+            const url = "https://niobiumnotifyfunc.azurewebsites.net/Notification";
+            const options = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            };
 
-        const url = "https://niobiumnotifyfunc.azurewebsites.net/Notification";
-        const options = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        };
+            const response = await fetchWithRetry(url, options);
 
-        const response = await fetchWithRetry(url, options);
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new ApiError(`API request failed: ${response.statusText}. Details: ${errorText}`, response.status);
-        }
-
-        return true;
-
-    } catch (error) {
-        // Log the error for debugging purposes.
-        console.error("Contact form submission failed:", error);
-        // Re-throw the error so the consumer can handle it.
-        throw error;
-    }
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new ApiError(`API request failed: ${response.statusText}. Details: ${errorText}`, response.status);
+            }
+        });
+    });
 }
