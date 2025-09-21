@@ -653,7 +653,7 @@
 	<script src="js/map-custom.js"></script> -->
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<script src="js/contact-us.js"></script>
+	<script src="https://assets.notification.niobium.co.nz/contact-us.js" crossorigin="anonymous"></script>
 
 
 	<script src="vendor/jquery.validate.min.js"></script>
@@ -710,7 +710,7 @@
 
 		});
 
-        function myFunction() {
+		function myFunction() {
 			try {
 				// 设置按钮不可点击
 				$("#sent").hide();
@@ -721,7 +721,7 @@
 					$("#submit").append('<div class="spinner"></div>');
 				}
 
-				contactUs(
+                niobium.notification.contactUs(
 					"6Lc9bKIqAAAAAL0al3RNFGqOf4_yT3BZHtPlWuUF",
 					"b4695665-680d-48e4-a3c7-72e5ae6fdb0b",
 					$("#realname").val(),
