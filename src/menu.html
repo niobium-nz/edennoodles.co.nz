@@ -212,10 +212,10 @@
 	<section class="section-mainmenu p-t-110 p-b-70 bg1-pattern">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-10 col-lg-6 p-r-35 p-r-15-lg m-l-r-auto" id="menu-upper">
+				<div class="col-md-10 col-lg-6 p-r-35 p-r-15-lg m-l-r-auto" id="menu-1">
 				</div>
 
-				<div class="col-md-10 col-lg-6 p-l-35 p-l-15-lg m-l-r-auto" id="menu-lower">
+				<div class="col-md-10 col-lg-6 p-l-35 p-l-15-lg m-l-r-auto" id="menu-2">
 				</div>
 			</div>
 		</div>
@@ -235,7 +235,7 @@
 
 		<div class="container m-t-100">
 			<div class="row">
-				<div class="col-md-10 col-lg-6 p-r-35 p-r-15-lg m-l-r-auto">
+				<div class="col-md-10 col-lg-6 p-r-35 p-r-15-lg m-l-r-auto" id="menu-3">
 					<div class="wrap-item-mainmenu p-b-22">
 						<h3 class="tit-mainmenu tit10 p-b-25">
 							Appetizer前菜
@@ -662,7 +662,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-10 col-lg-6 p-l-35 p-l-15-lg m-l-r-auto">
+				<div class="col-md-10 col-lg-6 p-l-35 p-l-15-lg m-l-r-auto" id="menu-4">
 					<div class="wrap-item-mainmenu p-b-22">
 						<h3 class="tit-mainmenu tit10 p-b-25">
 							Steamed Rice 蒸饭
@@ -1539,14 +1539,21 @@
 		(function () {
 			const MENU_ENDPOINT = 'https://edennoodlesmenu.table.core.windows.net/Ponsonby?sv=2019-02-02&spr=https&st=2025-12-13T14%3A14%3A22Z&se=2055-12-14T14%3A14%3A00Z&sp=r&sig=GCR8CyDEaKp9%2Bx5nBMzYPRCI2P1YR3uQphYbppC2jOA%3D&tn=Ponsonby';
 			const layout = [
-                { key: 'SIGNATURE COCKTAIL', container: 'menu-upper' },
-                { key: 'CLASSIC COCKTAIL', container: 'menu-upper' },
-                { key: 'BEER ON TAP', container: 'menu-upper' },
-                { key: 'BEER BY BOTTLE(330ML)', container: 'menu-upper' },
-                { key: 'ALCOHOL-FREE DRINKS', container: 'menu-lower' },
-                { key: 'WHITE WINE', container: 'menu-lower' },
-                { key: 'RED WINE', container: 'menu-lower' },
-                { key: 'BUBBLE', container: 'menu-lower' }
+                { key: 'SIGNATURE COCKTAIL', container: 'menu-1' },
+                { key: 'CLASSIC COCKTAIL', container: 'menu-1' },
+                { key: 'BEER ON TAP', container: 'menu-1' },
+                { key: 'BEER BY BOTTLE(330ML)', container: 'menu-1' },
+                { key: 'ALCOHOL-FREE DRINKS', container: 'menu-2' },
+                { key: 'WHITE WINE', container: 'menu-2' },
+                { key: 'RED WINE', container: 'menu-2' },
+                { key: 'BUBBLE', container: 'menu-2' },
+                { key: 'Appetizer 前菜', container: 'menu-3' },
+                { key: 'Steamed Dishes 蒸品', container: 'menu-3' },
+                { key: 'Steamed Rice 蒸饭', container: 'menu-4' },
+                { key: 'Wonton(Chicken Prawn/ Pork Caviar) 抄手(鸡肉虾/猪肉鱼籽)5pc', container: 'menu-4' },
+                { key: 'Salty Tofu Pudding with Chinese Baguette 油条豆腐脑', container: 'menu-4' },
+                { key: 'Sichuan Pita Bread 锅盔', container: 'menu-4' }
+                { key: 'Main 主食', container: 'menu-4' }
 			];
 
 			function sortItems(items) {
